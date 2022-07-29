@@ -8,13 +8,14 @@
                 <p>This is some text</p>
                 <p>This is a new paragrapgh</p>
                 <p>This is a new 2paragrapgh</p>
-                <p>This cam from the template: {{index .StringMap "test"}}</p>
+                <p>This came from the template: {{index .StringMap "test"}}</p>
 
                 <p>
                     {{if ne (index .StringMap "remote_ip") ""}}
                         Your remote id address is {{index .StringMap "remote_ip"}}
                     {{else}}
-                        I dont know your ip address yet. Visit the <a href="/">Home page</a>so i can set it.
+                        I dont know your ip address yet. 
+                        Visit the <a href="/">Home page</a> so i can set it.
                     {{end}}
                 </p>
             </div>

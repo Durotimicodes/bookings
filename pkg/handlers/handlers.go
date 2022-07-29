@@ -43,8 +43,8 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	stringMap := make(map[string]string)
 	stringMap["test"] = "Hello, Timi."
 
-	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
-	stringMap["remote_ip"] = remoteIP
+	// remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
+	// stringMap["remote_ip"] = remoteIP
 
 	//send data to template
 	render.RenderTemplate(w, "about.html", &model.TemplateData{
