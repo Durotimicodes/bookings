@@ -11,7 +11,7 @@ import (
 	"github.com/alexedwards/scs/v2"
 )
 
-const portNumber = ":9091"
+const portNumber = ":9092"
 
 var session *scs.SessionManager
 
@@ -19,16 +19,18 @@ var app config.AppConfig
 
 func main() {
 
+	//change this to true when in production
 	app.InProduction = false
 
-	session = scs.New() //Instantiate a session
-	session.Lifetime = 24 * time.Hour //it should last 24hours
-	session.Cookie.Persist = true // store session in cookie and make it persist
-	session.Cookie.SameSite = http.SameSiteLaxMode
-	session.Cookie.Secure = app.InProduction  //ensures that the cookie is encypted i.e site is https not http
+	session = scs.New()                            //Instantiate a session
+	session.Lifetime = 24 * time.Hour              //it should last 24hours
+	session.Cookie.Persist = true                  // store session in cookie and make it persist
+	session.Cookie.SameSite = http.SameSiteLaxMode //strict rules to define what site you want to apply this cookies/session to
+	session.Cookie.Secure = app.InProduction       //ensures that the cookie is encypted i.e site is https not http
 
 	app.Session = session
-	
+
+	//creating template cache
 	tc, err := render.CreateTemplateCache()
 	if err != nil {
 		log.Fatal("cannot create template cache")
@@ -43,7 +45,6 @@ func main() {
 
 	//start a web server
 	fmt.Printf("Starting application at port %s", portNumber)
-	
 
 	serve := &http.Server{
 		Addr:    portNumber,

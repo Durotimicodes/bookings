@@ -13,7 +13,7 @@ func NoSurf(next http.Handler) http.Handler {
 	//uses cookie to ensure the token it generate is available on a per page bases
 	csrfHandler.SetBaseCookie(http.Cookie{
 		HttpOnly: true,
-		Path:     "/",
+		Path:     "/", // i want it to apply to the entire site for the cookie
 		Secure:   app.InProduction,
 		SameSite: http.SameSiteLaxMode,
 	})

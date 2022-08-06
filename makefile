@@ -1,2 +1,2 @@
 run:
-	go run cmd/web/*go
+	go run cmd/web/*.go
